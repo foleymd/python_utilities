@@ -1,3 +1,5 @@
+'''Deletes screenshots from directory based on user input.'''
+
 import os, glob
 
 print('Please enter the directory from which you would like to delete screenshots.')
