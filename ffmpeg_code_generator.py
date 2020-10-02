@@ -13,7 +13,7 @@
 
     ffmpeg can be installed via homebrew.'''
 
-import csv
+import csv, os
 
 # Defining global constant for input and output file name. 
 INPUT = 'video_filenames.csv'
@@ -31,8 +31,8 @@ def main():
             if i != (num_loops - 1):
                 concatenated_command += ' && '
             
-        print(concatenated_command)    
+        cmd = concatenated_command
+        os.system(cmd)
 
-     
 main()
 
