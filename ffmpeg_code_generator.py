@@ -16,23 +16,26 @@
 import csv, os
 
 # Defining global constant for input and output file name. 
-INPUT = 'video_filenames.csv'
+INPUT = 'video_filenames.csv'        # place this file in the same directory as this script
 
 def main():
-    with open(INPUT, newline='') as csvfile:
+    with open(INPUT, newline='') as csvfile: 
+        
         reader = csv.reader(csvfile)
         items = list(reader)
+        num_loops = len(items)       # to determine when to add && between multiple commands
         csvfile.close()
-        concatenated_command = ''
-        num_loops = len(items)
+        
+        concatenated_command = ''    # the full output to be run on the command line
+
         for i,item in enumerate(items):
             line_command = ('ffmpeg -i ' + item[0] + ' -i ' + item[1] + ' -c copy -c:s mov_text ' + item[2])
-            concatenated_command += line_command
-            if i != (num_loops - 1):
+            concatenated_command += line_command # adding the command to caption the individual videos
+            if i != (num_loops - 1): # only add the && if it's not the last iteration
                 concatenated_command += ' && '
             
         cmd = concatenated_command
-        os.system(cmd)
+        os.system(cmd)               #output commands to command line
 
 main()
 
