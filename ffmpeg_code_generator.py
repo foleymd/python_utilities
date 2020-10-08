@@ -25,14 +25,13 @@ def main():
         items = list(csv.reader(csvfile)) # adding csv rows to a list
         csvfile.close()
         
-        commands = []      # all commands based on each spreadsheet row 
+        commands = []               # all commands based on each spreadsheet row 
 
-        for item in items: # adding the command to caption the individual videos
+        for item in items:          # adding the command to caption the individual videos
             line_command = ('ffmpeg -i ' + item[0] + ' -i ' + item[1] + ' -c copy -c:s mov_text ' + item[2])
             commands.append(line_command)
             
-        cmd = ' && '.join(commands)
-        print(cmd)
+        cmd = ' && '.join(commands) # adding && so commands can run all at once
         
         os.system(cmd)               #output commands to command line 
 
